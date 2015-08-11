@@ -13,14 +13,18 @@ Run like this: `ruby recipe.rb recipe.yaml`
 end
 
 class Recipe
-  attr_accessor :title
+  @@next_id = 1
+  attr_accessor :id, :title
 
   def initialize(title)
     @title = title
+    @id = @@next_id
+
+    @@next_id += 1
   end
 
   def to_s
-    title
+    "#{id}: #{title}"
   end
 end
 
