@@ -12,6 +12,25 @@ Run like this: `ruby recipe.rb recipe.yaml`
   ARGV[0]
 end
 
+class Recipe
+  attr_accessor :title
+
+  def initialize(title)
+    @title = title
+  end
+
+  def to_s
+    title
+  end
+end
+
 recipe_path = parse_recipe_path!
 recipe_titles = YAML.load_file(File.join(__dir__, recipe_path))
-puts recipe_titles.join("\n")
+
+recipes = recipe_titles.map do |title|
+  Recipe.new(title)
+end
+
+recipes.each do |recipe|
+  puts recipe
+end
